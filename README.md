@@ -85,5 +85,3 @@ Each scheme CSV file contains:
 - Invalid scheme codes will be rejected with error message
 - Network failures trigger automatic retry with exponential backoff
 - API rate limits respected with 1-2 second delays between requests
-- All errors logged to console for debugging
-```

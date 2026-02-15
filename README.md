@@ -1,60 +1,90 @@
-# Quick Start Guide: Mutual Funds Data Collection
+```markdown
+# MUTUAL FUND DATA COLLECTION TOOL
 
-### Step 1: Install Dependencies
+Interactive tool for collecting historical NAV data for Indian mutual funds from MFAPI.
+
+## FEATURES
+
+- Browse all available mutual fund schemes on MFAPI
+- Search schemes by keywords
+- Collect NAV data for specific schemes by scheme code
+- Interactive menu-driven interface
+
+## SETUP
+
+1. Install required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Ensure you have the SchemeBrowser module in the same directory
+
+## USAGE
+
+Run the main script:
 ```bash
-pip install -r requirements.txt
+python Data-Collector.py
 ```
 
-### Step 2: Run the Demo/Collection Tool
-```bash
-python DataCollector.py
+### MENU OPTIONS
+
+**Option 1: Get List of All Schemes**
+- Fetches and displays all available mutual fund schemes from MFAPI
+- Saves complete list to `data/raw/Schemes-List.csv`
+- Useful for browsing available schemes
+
+**Option 2: Browse Schemes Interactively**
+- Search schemes by keyword
+
+**Option 3: Get Data of Specific Schemes**
+- Enter scheme codes (comma-separated)
+- Validates scheme codes against MFAPI database
+- Downloads complete NAV history for selected schemes
+- Saves individual CSV files for each scheme
+
+**Option 4: Exit**
+- Safely exit the application
+
+## EXAMPLE WORKFLOW
+
+1. Run the program: `python Data-Collector.py`
+2. Select Option 1 to see all available schemes
+3. Note down scheme codes you want to collect
+4. Select Option 3 and enter scheme codes
+5. Data will be saved in `data/raw/` directory
+
+## INPUT FORMAT
+
+When collecting specific schemes (Option 3):
+```
+Enter scheme codes: 120503, 118989, 119597
 ```
 
-Then select **Option 3** for full collection.
+## OUTPUT FILES
 
-## What You'll Get
-
-After running the collection:
-
-### Directory Structure
+Collected data is saved in the following structure:
 ```
-data/raw/
-├── all_schemes.csv              # Complete list of ~1000+ schemes
-├── collection_summary.csv       # Summary of collected schemes
-├── all_nav_data.csv             # Combined NAV data (all schemes)
-├── scheme_120503.csv            # Individual scheme files
-├── scheme_118989.csv
-└── ...
+data/
+└── raw/
+    ├── Schemes-List.csv         # Complete list of schemes
+    ├── scheme_120503.csv        # Individual scheme data
+    ├── scheme_118989.csv
+    └── scheme_119597.csv
 ```
 
-### Data Format
+## DATA FORMAT
 
-Each scheme file contains:
-- **date**: NAV date (DD-MM-YYYY)
-- **nav**: Net Asset Value
-- **scheme_code**: Unique scheme identifier
-- **scheme_name**: Full scheme name
-- **fund_house**: AMC name
-- **scheme_type**: Open/Closed ended
-- **scheme_category**: Category classification
+Each scheme CSV file contains:
+- `date`: NAV date (DD-MM-YYYY format)
+- `nav`: Net Asset Value
+- `scheme_code`: Scheme identifier
+- `scheme_name`: Full scheme name
+- `fund_house`: Asset Management Company
 
-## Alternative: Manual Collection
+## ERROR HANDLING
 
-### Option A: Browse and Select Schemes
-```bash
-python scheme_browser.py
+- Invalid scheme codes will be rejected with error message
+- Network failures trigger automatic retry with exponential backoff
+- API rate limits respected with 1-2 second delays between requests
+- All errors logged to console for debugging
 ```
-
-### Option B: Enhanced Collection with Custom Categories
-```bash
-python enhanced_collector.py
-```
-
-Edit the script to customize categories and number of schemes.
-
-### Option C: Basic Collection
-```bash
-python mf_data_collector.py
-```
-
-Collects predefined popular schemes.

@@ -1,4 +1,3 @@
-```markdown
 # MUTUAL FUND DATA COLLECTION TOOL
 
 Interactive tool for collecting historical NAV data for Indian mutual funds from MFAPI.

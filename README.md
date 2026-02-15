@@ -1,6 +1,4 @@
-# Quick Start Guide: Data Collection
-
-## 🚀 Start Here
+# Quick Start Guide: Mutual Funds Data Collection
 
 ### Step 1: Install Dependencies
 ```bash
@@ -9,7 +7,7 @@ pip install -r requirements.txt
 
 ### Step 2: Run the Demo/Collection Tool
 ```bash
-python demo_collection.py
+python DataCollector.py
 ```
 
 Then select **Option 3** for full collection.
@@ -22,7 +20,7 @@ After running the collection:
 ```
 data/raw/
 ├── all_schemes.csv              # Complete list of ~1000+ schemes
-├── collection_summary.csv        # Summary of collected schemes
+├── collection_summary.csv       # Summary of collected schemes
 ├── all_nav_data.csv             # Combined NAV data (all schemes)
 ├── scheme_120503.csv            # Individual scheme files
 ├── scheme_118989.csv
